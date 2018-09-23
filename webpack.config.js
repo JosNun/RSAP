@@ -36,10 +36,6 @@ module.exports = [{
 // Client
 {
   entry: './app/index.tsx',
-  // externals: {
-  //   "react": "React",
-  //   "react-dom": "ReactDOM",
-  // },
   devtool: 'inline-source-map',
   module: {
     rules: [

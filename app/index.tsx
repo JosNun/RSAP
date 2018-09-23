@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const Index = () => {
-  return <h1>Hello there! React is working!</h1>;
-};
+import App from './app';
 
-ReactDOM.render(<Index />, document.getElementById('app'));
+ReactDOM.render(<App />, document.getElementById('app'));
