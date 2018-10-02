@@ -13,18 +13,9 @@ const app = express();
 // TODO: Pull this from environment variables
 const PORT = 3000;
 
-interface Random {
-  thing: String;
-}
-
-const test: Random = {
-  thing: 'Hi there!',
-};
-
 const jsonParser = bodyParser.json();
 
 app.post('/add-team', jsonParser, (req, res) => {
-  console.log(req.body);
   const teamNum = req.body.teamNum;
 
   console.log(`Ding Ding! Info from team ${teamNum} arrived!`);
@@ -37,8 +28,6 @@ app.get('*', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'app/index.html'));
 });
 
-// app.get('/', (req, res) => {
-//   res.send('Something works!');
-// });
-
-app.listen(PORT, () => console.log(`App listening on port ${PORT}`));
+app.listen(PORT, () => {
+  console.log(`App listening on port ${PORT}`);
+});
