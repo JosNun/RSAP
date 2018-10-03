@@ -7,6 +7,7 @@ yarn-error.log*
 
 # Built files
 dist/
+.awcache
 
 # Dependency directories
 node_modules/

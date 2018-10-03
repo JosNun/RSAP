@@ -1,6 +1,7 @@
 const path = require('path');
 const nodeExternals = require('webpack-node-externals');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CheckerPlugin } = require('awesome-typescript-loader');
 
 const htmlPlugin = new HtmlWebpackPlugin({
   template: 'app/public/index.html',
@@ -20,11 +21,19 @@ module.exports = [{
     rules: [
       {
         test: /\.tsx?$/,
-        use: 'ts-loader',
+        use: {
+          loader: 'awesome-typescript-loader',
+          options: {
+            configFileName: 'tsconfig-server.json'
+          }
+        },
         exclude: /node_modules/,
       }
     ]
   },
+  plugins: [
+    new CheckerPlugin()
+  ],
   resolve: {
     extensions: ['.ts', '.js'],
   },
@@ -41,7 +50,15 @@ module.exports = [{
     rules: [
       {
         test: /\.tsx?$/,
-        use: 'ts-loader',
+        use: {
+          loader: 'awesome-typescript-loader',
+          options: {
+            configFileName: 'tsconfig-client.json',
+            useCache: true,
+            useBabel: true,
+            babelCore: '@babel/core',
+          }
+        },
         exclude: /node_modules/,
       }
     ]
@@ -53,5 +70,5 @@ module.exports = [{
     filename: 'index.js',
     path: path.resolve(__dirname, 'dist/app'),
   },
-  plugins: [htmlPlugin],
+  plugins: [htmlPlugin, new CheckerPlugin()],
 }];
